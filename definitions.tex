@@ -1,0 +1,33 @@
+% 공통 매크로 정의
+\newcommand{\model}{CSDG\xspace}
+\newcommand{\modelfull}{Cluster-Sequence Generation\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\ie}{i.e.,\xspace}
+
+% ===== 표/그림 번호 발음 기반 자동 조사 =====
+% \josaref{표}{label}{UN}  ->  [표 N] + 은/는 (번호가 바뀌어도 자동 일치)
+%   UN: 은/는, I: 이/가, UL: 을/를, GW: 과/와
+% 끝자리 발음에 받침이 있으면(0,1,3,6,7,8) 받침용 조사, 없으면(2,4,5,9) 모음용 조사.
+\makeatletter
+\newif\if@jong
+\def\jUN{UN}\def\jI{I}\def\jUL{UL}\def\jGW{GW}
+\newcommand{\josaref}[3]{%
+  [#1~\ref{#2}]%
+  \@tempcnta=\getrefnumber{#2}\relax
+  \@tempcntb=\@tempcnta \divide\@tempcntb by 10 \multiply\@tempcntb by 10
+  \advance\@tempcnta by -\@tempcntb % 끝자리
+  \@jongfalse
+  \ifnum\@tempcnta=0 \@jongtrue\fi
+  \ifnum\@tempcnta=1 \@jongtrue\fi
+  \ifnum\@tempcnta=3 \@jongtrue\fi
+  \ifnum\@tempcnta=6 \@jongtrue\fi
+  \ifnum\@tempcnta=7 \@jongtrue\fi
+  \ifnum\@tempcnta=8 \@jongtrue\fi
+  \def\@jt{#3}%
+  \if@jong
+    \ifx\@jt\jUN 은\else\ifx\@jt\jI 이\else\ifx\@jt\jUL 을\else\ifx\@jt\jGW 과\fi\fi\fi\fi
+  \else
+    \ifx\@jt\jUN 는\else\ifx\@jt\jI 가\else\ifx\@jt\jUL 를\else\ifx\@jt\jGW 와\fi\fi\fi\fi
+  \fi
+}
+\makeatother

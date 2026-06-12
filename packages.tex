@@ -1,0 +1,50 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% include additional packages you need to use
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{appendix}
+
+% graphic, float package
+\usepackage{graphicx}		% for setting images
+\usepackage{float}			% for float objects
+% \usepackage{subfloat}		% subfloat.sty 미설치 → 비활성화 (미사용)
+\usepackage{subfigure}		% for adding several figures in a figure environment
+\usepackage{lscape}			% for landscape type images or tables
+
+\usepackage{enumitem}
+\usepackage{xspace}			% for \model, \eg 등 매크로 trailing space 처리
+\usepackage[table]{xcolor}	% tikz보다 먼저 [table] 옵션으로 로드 (옵션 충돌 방지)
+\usepackage{tikz}			% 모델 구조 그림
+\usetikzlibrary{arrows.meta, positioning, fit, backgrounds}
+
+% for compact section title spacing
+% \usepackage[compact]{titlesec}
+
+
+% mathmetical presentation
+\usepackage{gensymb}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{exscale}
+\usepackage{textcomp}		% extra symbols
+
+
+% for circled number
+\newcommand{\cl}[1]{\textcircled{\scriptsize #1}}
+
+
+% package for using algorithmic presentation (algorithmic.sty 미설치 → 비활성화)
+% \usepackage{algorithmic}
+% \usepackage{algorithm}
+% customize algorithmic environment
+% \renewcommand{\algorithmicrequire}{\makebox[40px]{\hfill\textbf{Input :}}}
+% \renewcommand{\algorithmicensure}{\makebox[40px]{\hfill\textbf{Output :}}}
+
+% array and table presentation
+\usepackage{array}
+\usepackage{tabulary}
+\usepackage{multirow}
+% \usepackage[table]{xcolor}  % 위에서 tikz 앞에 이미 로드함 (중복 제거)
+\usepackage{ctable}
+\usepackage{booktabs}		% for typesetting tables at the level of publication
+\usepackage{refcount}		% \getrefnumber: 표/그림 번호 발음 기반 자동 조사용

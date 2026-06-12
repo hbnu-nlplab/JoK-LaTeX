@@ -1,0 +1,74 @@
+%% main.tex --- KIISE 논문지 양식 사용 예시
+%% 컴파일: xelatex main.tex
+%%
+%% 심사용:  \documentclass{kiise}        (저자 정보 일체 미표기, 감사의 글 미기재)
+%% 채택 후: \documentclass[final]{kiise} (저자, 약력 출력)
+\documentclass[final]{kiise}
+
+\input{packages}     % 추가 패키지
+\input{definitions}  % 공통 매크로 (\model, \eg, \josaref 등)
+
+\begin{document}
+
+%% ===== 논문 구성 순서 (규정 7-(1)) =====
+%% 국문 제목 -> 영문 제목 -> 국문 요약 -> 국문 키워드 -> 영문 요약 -> 영문 키워드
+%% -> 본문 -> 참고문헌 -> 부록
+
+\koreantitle{정보과학회 저널 LaTeX 양식 만들었습니다\\ 제목을 입력하세요}
+\englishtitle{NLP Lab @ Hanbat National University}
+
+%% 채택 후(final)에만 출력됨 — 심사용에서는 무시
+%% 머리글: 홀수면=짧은 제목, 짝수면=학회지 권호 정보
+\runningtitle{국립한밭대학교 NLP Lab }
+\journalinfo{정보과학회논문지: 정보통신 제 31 권 제 6 호(2004.12)}
+
+\koreanauthors{홍 길 동 \qquad 김 철 수}
+\englishauthors{Gildong Hong \qquad Cheolsu Kim}
+
+%% 1면 좌측단 각주: 사사, 저자 소속, 교신저자, 접수/심사일 (final 모드에서만 출력)
+\firstpagefootnotes{%
+  \fpitem{\dag}{
+  사사 입력
+  }
+  \fpitem{\ddag}{정 회 원 : 국립한밭대학교 컴퓨터공학과\\ \mbox{}\quad parkce@hanbat.ac.kr}
+  \fpitem{\S}{정 회 원 :  \\
+  \mbox{}\quad 교신저자\\ \mbox{}\quad parkce@hanbat.ac.kr}
+  \fpitem{}{논문접수 : }
+  \fpitem{}{심사완료 : }
+}
+
+%% 국문 요약: 300~500자 (규정 7-(2))
+\koreanabstract{요약을 입력하세요. 300--500자.}
+
+%% 국문 키워드: 4~6개
+\koreankeywords{정보과학회 저널, Latex 양식}
+
+%% 영문 요약: 100~200 단어
+\englishabstract{
+English Abstract
+}
+
+%% 영문 키워드: 4~6개
+\englishkeywords{Proxy signature, ID-based partially blind signature, Proxy
+partially blind signature, Gap Diffie-Hellman problem, Bilinear-pairing}
+
+\maketitle
+
+
+\input{body/intro}
+\input{body/related_work}
+\input{body/method}
+\input{body/experiments}
+\input{body/conclusion}
+
+
+%% ===== 참고문헌: BibTeX 사용 (영문 표기, 인용 순서, 규정 8) =====
+\bibliographystyle{kiise}
+\bibliography{references}
+
+%% ===== 저자 약력 (채택 후, final 옵션에서만 출력; 200자 이내, 규정 11) =====
+\biography{홍 길 동}{}{2010년 한밭대학교 컴퓨터공학과 졸업(학사). 2012년 동
+대학원 졸업(석사). 2012년$\sim$현재 동 대학원 박사과정. 관심분야는 암호이론,
+정보보호}
+
+\end{document}

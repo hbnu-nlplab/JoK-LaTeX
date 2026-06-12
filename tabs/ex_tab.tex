@@ -1,0 +1,15 @@
+
+%% ----- 표 예시: 제목은 상단 중앙 -----
+\begin{table}[t]
+\tabcaption{제안 방식의 계산량 비교}{Comparison of computational costs}\label{tab:cost}
+\centering
+\fontsize{8pt}{11pt}\selectfont
+\begin{tabular}{lccc}
+\toprule
+Scheme & Pairing & Scalar Mul. & Hash \\
+\midrule
+Zhang et al. & 3 & 4 & 2 \\
+Proposed     & 2 & 3 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
