@@ -1,4 +1,4 @@
-# KIISE 논문지 LaTeX 양식
+# KIISE 정보과학회 논문지 LaTeX 양식
 
 ex_paper01.hwp / ex_paper02.doc (정보과학회논문지)에서 추출한 레이아웃 기반 LaTeX class.
 
