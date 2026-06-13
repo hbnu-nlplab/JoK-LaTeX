@@ -6,7 +6,7 @@
 %%          \documentclass[final]{kiise}     % 채택 후 (저자 표기)
 %%
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{kiise}[2026/06/13 v1.5 KIISE journal style (titles 15.5/11pt, first-page footnotes, centered headers, hyperref)]
+\ProvidesClass{kiise}[2026/06/13 v1.6 KIISE journal style (paired per-author names, titles 15.5/11pt, first-page footnotes, centered headers, hyperref)]
 
 \newif\if@kiisefinal\@kiisefinalfalse
 \DeclareOption{final}{\@kiisefinaltrue}
@@ -89,6 +89,24 @@
 \newcommand{\englishtitle}[1]{\def\@englishtitle{#1}}
 \newcommand{\koreanauthors}[1]{\def\@koreanauthors{#1}}   % final 옵션에서만 출력
 \newcommand{\englishauthors}[1]{\def\@englishauthors{#1}} % final 옵션에서만 출력
+\def\@koreanauthors{}\def\@englishauthors{}
+
+%% 저자 단위 입력: \addauthor{홍 길 동}{Gil Dong Hong}
+%% 여러 명은 \addauthor를 반복 호출. 국문 이름 아래에 영문 이름이 괄호로 각각 묶여 정렬됨.
+\newcounter{kiise@nauthors}
+\long\def\@authorblock{}
+\newcommand{\addauthor}[2]{%
+  \stepcounter{kiise@nauthors}%
+  \ifnum\value{kiise@nauthors}=1
+    \g@addto@macro\@authorblock{\kiise@oneauthor{#1}{#2}}%
+  \else
+    \g@addto@macro\@authorblock{\hspace{2.5em}\kiise@oneauthor{#1}{#2}}%
+  \fi}
+\newcommand{\kiise@oneauthor}[2]{%
+  \begin{tabular}[t]{@{}c@{}}
+    {\fontsize{10pt}{13pt}\selectfont\sffamily #1}\\[2pt]
+    {\fontsize{9pt}{12pt}\selectfont (#2)}
+  \end{tabular}}
 
 \long\def\@koreanabstract{}\long\def\@englishabstract{}
 \newcommand{\koreanabstract}[1]{\long\def\@koreanabstract{#1}}   % 300~500자
@@ -119,9 +137,13 @@
       {\fontsize{11pt}{14pt}\selectfont (\@englishtitle)\par}
       \if@kiisefinal
         \vskip 10pt
-        {\fontsize{10pt}{14pt}\selectfont\sffamily \@koreanauthors\par}
-        \vskip 2pt
-        {\fontsize{9pt}{12pt}\selectfont (\@englishauthors)\par}
+        \ifnum\value{kiise@nauthors}>0
+          {\@authorblock\par}%
+        \else
+          {\fontsize{10pt}{14pt}\selectfont\sffamily \@koreanauthors\par}%
+          \vskip 2pt
+          {\fontsize{9pt}{12pt}\selectfont (\@englishauthors)\par}%
+        \fi
       \fi
       \vskip 14pt
     \end{center}
